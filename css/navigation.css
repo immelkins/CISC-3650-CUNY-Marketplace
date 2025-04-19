@@ -39,7 +39,7 @@ button.nav-btn:hover,
   color: whitesmoke;
 }
 
-img {
+.navbar img {
   height: 5vh;
   min-height: 50px;
   width: 25vh;
