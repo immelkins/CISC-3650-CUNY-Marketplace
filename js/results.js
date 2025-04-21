@@ -1,4 +1,4 @@
-import Model from './list.js';
+import Model from './updatedlist.js';
 
 let currentIndex = 0;
 let allResults = [];
@@ -12,6 +12,7 @@ export function loadResults(searchInput = null) {
   if (searchInput) {
     activeResults = allResults.filter(result =>
       result.title.toLowerCase().includes(searchInput) ||
+      result.tags.toLowerCase().includes(searchInput) ||
       result.contributor.join(', ').toLowerCase().includes(searchInput) ||
       result.seller.toLowerCase().includes(searchInput)
     );
@@ -55,6 +56,7 @@ function displayResults() {
         <div class="info">
           <div class="title-rating">
             <h3>${result.title}</h3>
+            <div class="tags">tags: ${result.tags}</div>
             <div class="stars">${'★'.repeat(Math.round(result.rating || 0))}</div>
           </div>
           <p>${result.description?.[0] || 'No description available.'}</p>
