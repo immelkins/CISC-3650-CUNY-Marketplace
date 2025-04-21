@@ -24,8 +24,6 @@ https://colorhunt.co/palette/211c844d55cc7a73d1b5a8d5
   --border-radius-md: 8px;
 }
 
-
-
 .app-header {
   background-color: var(--primary-color);
   display: flex;
