@@ -1,0 +1,330 @@
+:root {
+  --primary-color: #8c52ff;
+  --hover-primary: #7a42eb;
+  --light-bg: #e0e0e0;
+  --card-bg: #ffffff;
+  --text-dark: #333333;
+  --text-light: #f0f0f0;
+  --border-color: #dddddd;
+  --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.3s ease;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+}
+
+body {
+  background-color: var(--light-bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 0;
+  color: var(--text-dark);
+}
+
+.homepage-container {
+  width: 100%;
+  margin: 0;
+}
+
+.app-header {
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  box-shadow: var(--shadow-medium);
+  position: relative;
+  width: 100%;
+  margin: 0;
+}
+
+.brand-logo {
+  width: 30px;
+  height: 30px;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius-sm);
+  position: absolute;
+  left: 20px;
+  transition: transform var(--transition-fast);
+}
+
+.brand-logo:hover {
+  transform: scale(1.1);
+}
+
+.search-box {
+  display: flex;
+  flex: 0 1 700px;
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+  margin: 0 auto;
+  transition: box-shadow var(--transition-fast);
+}
+
+.search-box:focus-within {
+  box-shadow: var(--shadow-medium);
+}
+
+.search-filter {
+  background-color: var(--text-light);
+  border: none;
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dark);
+  border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color var(--transition-fast);
+}
+
+.search-filter:hover {
+  background-color: #e5e5e5;
+}
+
+.caret {
+  font-size: 10px;
+  margin-left: 5px;
+  transition: transform var(--transition-fast);
+}
+
+.search-filter:hover .caret {
+  transform: translateY(2px);
+}
+
+.search-field {
+  flex: 1;
+  border: none;
+  padding: 8px 15px;
+  font-size: 14px;
+  outline: none;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 20px;
+}
+
+.market-button {
+  background-color: var(--text-light);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  padding: 8px 16px;
+  margin-right: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.market-button:hover {
+  background-color: #e5e5e5;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-light);
+}
+
+.market-button:active {
+  transform: translateY(0);
+}
+
+.cart-button {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  transition: transform var(--transition-fast);
+}
+
+.cart-button img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+  transition: transform var(--transition-fast);
+}
+
+.cart-button:hover img {
+  transform: scale(1.15);
+}
+
+.account-button {
+  display: flex;
+  align-items: center;
+}
+
+.account-icon {
+  width: 30px;
+  height: 30px;
+  background-color: var(--card-bg);
+  border-radius: 50%;
+  transition: transform var(--transition-medium),
+    box-shadow var(--transition-medium);
+}
+
+.account-button:hover .account-icon {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
+}
+
+.card-navigation {
+  background-color: var(--card-bg);
+  padding: 20px;
+  margin: 20px;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-light);
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.feature-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 20px;
+  position: relative;
+  min-height: 150px;
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  box-shadow: var(--shadow-light);
+  transition: transform var(--transition-medium),
+    box-shadow var(--transition-medium), border-color var(--transition-medium);
+  overflow: hidden;
+}
+
+.feature-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: rgba(140, 82, 255, 0.05);
+  transition: height var(--transition-medium);
+  z-index: 0;
+}
+
+.feature-card:hover::after,
+.feature-card:focus::after {
+  height: 100%;
+}
+
+.feature-card:hover,
+.feature-card:focus {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-right: 20px;
+  margin-top: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.card-text div {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.2;
+  text-align: left;
+  transition: color var(--transition-fast);
+}
+
+.feature-card:hover .card-text div {
+  color: var(--primary-color);
+}
+
+.card-arrow {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  font-size: 26px;
+  color: #000;
+  font-weight: bold;
+  transition: transform var(--transition-medium), color var(--transition-medium);
+  z-index: 1;
+}
+
+.feature-card:hover .card-arrow,
+.feature-card:focus .card-arrow {
+  transform: translateX(5px);
+  color: var(--primary-color);
+}
+
+.content-container {
+  background-color: var(--card-bg);
+  min-height: 300px;
+  margin: 0 20px 20px;
+  padding: 20px;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-light);
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 992px) {
+  .nav-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .app-header {
+    padding: 12px 60px;
+  }
+
+  .search-box {
+    flex: 0 1 550px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    flex-direction: column;
+    padding: 15px;
+    height: auto;
+  }
+
+  .brand-logo {
+    position: static;
+    margin-bottom: 15px;
+  }
+
+  .search-box {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .nav-actions {
+    position: static;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+
+  .nav-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .market-button {
+    margin-right: 10px;
+  }
+}
