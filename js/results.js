@@ -68,7 +68,7 @@ function displayResults() {
     container.innerHTML += card;
   });
   
-  currentIndex += 25;
+  currentIndex += 20;
   if (currentIndex >= activeResults.length) {
     document.getElementById('load-more-btn').style.display = 'none';
   }

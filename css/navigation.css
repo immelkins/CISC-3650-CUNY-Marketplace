@@ -6,41 +6,174 @@ Color Palette
 #b5a8d5
 https://colorhunt.co/palette/211c844d55cc7a73d1b5a8d5
 */
-.navbar {
-  background-color: #211c84;
+
+:root {
+  --primary-color: #8c52ff;
+  --hover-primary: #7a42eb;
+  --light-bg: #e0e0e0;
+  --card-bg: #ffffff;
+  --text-dark: #333333;
+  --text-light: #f0f0f0;
+  --border-color: #dddddd;
+  --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.3s ease;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+}
+
+
+
+.app-header {
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  box-shadow: var(--shadow-medium);
   position: fixed;
-  height: 10vh;
-  width: 100vw;
+  top: 0px;
   z-index: 1000;
-  min-height: 75px;
-  padding: 1rem;
-  display: flex;
-  align-items: center;
+  width: 100%;
+  margin: 0;
 }
 
-button.nav-btn, 
-#search-btn {
-  border-color: #7a73d1;
-  background-color: none;
-  height: 5vh;
-  min-height: 50px;
-  width: 25vh;
-  min-width: 100px;
-  max-width: 125px;
-  padding: 0.5rem 1rem;
+.brand-logo {
+  width: 30px;
+  height: 30px;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius-sm);
+  position: absolute;
+  left: 20px;
+  transition: transform var(--transition-fast);
+}
+
+.brand-logo:hover {
+  transform: scale(1.1);
+}
+
+.search-box {
+  display: flex;
+  width: 100%;
+  max-width: 700px;
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+  margin: 0 auto;
+  transition: box-shadow var(--transition-fast);
+}
+
+.search-box:focus-within {
+  box-shadow: var(--shadow-medium);
+}
+
+.search-filter {
+  background-color: var(--text-light);
+  border: none;
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dark);
+  border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
   cursor: pointer;
-  justify-content: center;
-  align-items: center;
   display: flex;
-  color: #7a73d1;
-  font-weight: bolder;
+  align-items: center;
+  transition: background-color var(--transition-fast);
+  flex-shrink: 0;
+  min-width: 120px;
 }
 
-button.nav-btn:hover,
-#search-btn:hover {
-  background-color: #7a73d1;
-  color: whitesmoke;
+.search-filter:hover {
+  background-color: #e5e5e5;
 }
+
+.caret {
+  font-size: 10px;
+  margin-left: 5px;
+  transition: transform var(--transition-fast);
+}
+
+.search-filter:hover .caret {
+  transform: translateY(2px);
+}
+
+.search-field {
+  flex: 1;
+  border: none;
+  padding: 8px 15px;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 20px;
+}
+
+.market-button {
+  background-color: var(--text-light);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  padding: 8px 16px;
+  margin-right: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.market-button:hover {
+  background-color: #e5e5e5;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-light);
+}
+
+.market-button:active {
+  transform: translateY(0);
+}
+
+.cart-button {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  transition: transform var(--transition-fast);
+}
+
+.cart-button img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+  transition: transform var(--transition-fast);
+}
+
+.cart-button:hover img {
+  transform: scale(1.15);
+}
+
+.account-button {
+  display: flex;
+  align-items: center;
+}
+
+.account-icon {
+  width: 30px;
+  height: 30px;
+  background-color: var(--card-bg);
+  border-radius: 50%;
+  transition: transform var(--transition-medium),
+    box-shadow var(--transition-medium);
+}
+
+.account-button:hover .account-icon {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
+}
+
 
 .navbar img {
   height: 5vh;
