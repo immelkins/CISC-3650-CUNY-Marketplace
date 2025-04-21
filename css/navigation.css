@@ -8,7 +8,10 @@ https://colorhunt.co/palette/211c844d55cc7a73d1b5a8d5
 */
 .navbar {
   background-color: #211c84;
+  position: fixed;
   height: 10vh;
+  width: 100vw;
+  z-index: 1000;
   min-height: 75px;
   padding: 1rem;
   display: flex;

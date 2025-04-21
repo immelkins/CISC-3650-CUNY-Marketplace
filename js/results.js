@@ -24,56 +24,50 @@ export function loadResults(searchInput = null) {
 
 function initialTable() {
   const container = document.getElementById('results-container');
-
-  container.innerHTML = `
-    <table id="results-table" class='table table-hover'>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Author(s)</th>
-          <th>Year</th>
-          <th>Seller</th>
-          <th>Rating</th>
-          <th>Resell Price</th>
-        </tr>
-      </thead>
-      <tbody id='result-table-body'></tbody>
-    </table>
-  `;
-
+  container.innerHTML = ''; // Clear any previous content
   document.getElementById('load-more-btn').addEventListener('click', displayResults);
 }
 
+
 function displayResults() {
-  const resultsTable = document.getElementById('result-table-body');
+  const container = document.getElementById('results-container');
   const batch = activeResults.slice(currentIndex, currentIndex + 25);
 
   if (batch.length === 0 && currentIndex === 0) {
-    resultsTable.innerHTML = `
-      <tr><td colspan="6" class="text-center">
+    container.innerHTML = `
+      <div class="not-found">
         <img src="image/not_found.gif" alt="Not Found" width="300" />
         <p>0 results found :(</p>
-      </td></tr>
+      </div>
     `;
     document.getElementById('load-more-btn').style.display = 'none';
     return;
   }
 
   batch.forEach(result => {
-    const row = `
-      <tr>
-        <td>${result.title}</td>
-        <td>${result.contributor.join(', ')}</td>
-        <td>${result.date}</td>
-        <td>${result.seller}</td>
-        <td>${result.rating}</td>
-        <td>$${result.resell_price}</td>
-      </tr>
+    const imageSrc = result.image_url?.[0] || 'image/placeholder.png';
+    
+    const card = `
+      <div class="result-card">
+        <div class="thumbnail">
+          <img src="${imageSrc}" alt="Cover for ${result.title}" />
+        </div>
+        <div class="info">
+          <div class="title-rating">
+            <h3>${result.title}</h3>
+            <div class="stars">${'★'.repeat(Math.round(result.rating || 0))}</div>
+          </div>
+          <p>${result.description?.[0] || 'No description available.'}</p>
+          <div class="seller">seller: ${result.seller}</div>
+          <div class="price">price: $${result.resell_price}</div>
+        </div>
+      </div>
     `;
-    resultsTable.innerHTML += row;
+    container.innerHTML += card;
   });
-
+  
   currentIndex += 25;
-  if (currentIndex >= activeResults.length) 
-    {document.getElementById('load-more-btn').style.display = 'none';}
+  if (currentIndex >= activeResults.length) {
+    document.getElementById('load-more-btn').style.display = 'none';
+  }
 }
