@@ -6,6 +6,33 @@
     <link rel = 'stylesheet' href = '../css/market.css'>
   </head>
   <body>
+    <header class="app-header">
+      <div class="brand-logo"></div>
+
+      <div class="search-box">
+        <div class="dropdown">
+          <button class="search-filter" type="button">
+            Search By <span class="caret">▼</span>
+          </button>
+        </div>
+        <input
+          type="text"
+          class="search-field"
+          placeholder="Search for anything"
+        />
+      </div>
+
+      <div class="nav-actions">
+        <button class="market-button">Market</button>
+        <a href="#" class="cart-button">
+          <img src="../image/cart-icon.png" alt="Cart" />
+        </a>
+        <a href="#" class="account-button">
+          <div class="account-icon"></div>
+        </a>
+      </div>
+    </header>
+
     <div class = 'market-sect'>
       <div class = 'top'>
         <div id = 'filter-container'>
@@ -17,7 +44,7 @@
         </div>
 
         <div>
-          <button id="new-listing-btn"><h2>Add Listing</h2></button>
+          <button id="new-listing-btn"><h2 id="add-listing-text">Add Listing</h2></button>
         
           <div id = 'messages-container'>
             <h2 id="messages-text">Messages</h2>
