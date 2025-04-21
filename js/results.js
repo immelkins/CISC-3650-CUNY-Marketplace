@@ -8,6 +8,8 @@ export function loadResults(searchInput = null) {
   const model = new Model();
   allResults = model.data.results;
   currentIndex = 0;
+  document.getElementById('clear-filters').addEventListener('click', clearFilters);
+  document.getElementById('apply-filters').addEventListener('click', applyFilters);
 
   if (searchInput) {
     activeResults = allResults.filter(result =>
@@ -28,7 +30,6 @@ function initialTable() {
   container.innerHTML = ''; // Clear any previous content
   document.getElementById('load-more-btn').addEventListener('click', displayResults);
 }
-
 
 function displayResults() {
   const container = document.getElementById('results-container');
@@ -61,7 +62,7 @@ function displayResults() {
           </div>
           <p>${result.description?.[0] || 'No description available.'}</p>
           <div class="seller">seller: ${result.seller}</div>
-          <div class="price">price: $${result.resell_price}</div>
+          <div class="price">price: $${Number(result.resell_price).toFixed(2)}</div>        
         </div>
       </div>
     `;
@@ -72,4 +73,47 @@ function displayResults() {
   if (currentIndex >= activeResults.length) {
     document.getElementById('load-more-btn').style.display = 'none';
   }
+}
+
+function applyFilters() {
+  const selectedTags = Array.from(
+    document.querySelectorAll('input[name="tag"]:checked')
+  ).map(cb => cb.value.toLowerCase());
+
+  const minRating = parseFloat(document.getElementById('rating-filter')?.value) || 0;
+  const minPrice = parseFloat(document.getElementById('min-price')?.value) || 0;
+  const maxPrice = parseFloat(document.getElementById('max-price')?.value) || Infinity;
+
+  activeResults = allResults.filter(result => {
+    const tagMatch = selectedTags.length === 0 ||
+      (result.tags && selectedTags.some(tag =>
+        result.tags.toLowerCase().includes(tag)
+      ));
+
+    const ratingMatch = result.rating >= minRating;
+    const priceMatch = result.resell_price >= minPrice && result.resell_price <= maxPrice;
+
+    return tagMatch && ratingMatch && priceMatch;
+  });
+
+  currentIndex = 0;
+  document.getElementById('results-container').innerHTML = '';
+  displayResults();
+  window.scrollTo(0, 0); 
+}
+
+function clearFilters() {
+  // Reset Filter section
+  document.querySelectorAll('input[name="tag"]').forEach(cb => cb.checked = false);
+  document.getElementById('rating-filter').value = '0';
+  document.getElementById('min-price').value = '0';
+  document.getElementById('max-price').value = '100';
+
+  // Reset data and view
+  activeResults = allResults;
+  currentIndex = 0;
+  document.getElementById('results-container').innerHTML = '';
+  document.getElementById('load-more-btn').style.display = 'block';
+  displayResults();
+  window.scrollTo(0, 0); 
 }
