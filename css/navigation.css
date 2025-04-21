@@ -24,17 +24,34 @@ https://colorhunt.co/palette/211c844d55cc7a73d1b5a8d5
   --border-radius-md: 8px;
 }
 
+body {
+  background-color: var(--light-bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 0;
+  padding: 0;
+  color: var(--text-dark);
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 .app-header {
   background-color: var(--primary-color);
   display: flex;
   align-items: center;
   padding: 12px 20px;
   box-shadow: var(--shadow-medium);
-  position: fixed;
-  top: 0px;
-  z-index: 1000;
+  position: relative;
   width: 100%;
   margin: 0;
+  box-sizing: border-box;
 }
 
 .brand-logo {
@@ -45,6 +62,7 @@ https://colorhunt.co/palette/211c844d55cc7a73d1b5a8d5
   position: absolute;
   left: 20px;
   transition: transform var(--transition-fast);
+  cursor: pointer;
 }
 
 .brand-logo:hover {
@@ -53,8 +71,8 @@ https://colorhunt.co/palette/211c844d55cc7a73d1b5a8d5
 
 .search-box {
   display: flex;
-  width: 100%;
-  max-width: 700px;
+  flex: 0 1 700px;
+  max-width: 60%;
   border-radius: var(--border-radius-sm);
   overflow: hidden;
   box-shadow: var(--shadow-light);
@@ -78,8 +96,7 @@ https://colorhunt.co/palette/211c844d55cc7a73d1b5a8d5
   display: flex;
   align-items: center;
   transition: background-color var(--transition-fast);
-  flex-shrink: 0;
-  min-width: 120px;
+  white-space: nowrap;
 }
 
 .search-filter:hover {
@@ -102,7 +119,50 @@ https://colorhunt.co/palette/211c844d55cc7a73d1b5a8d5
   padding: 8px 15px;
   font-size: 14px;
   outline: none;
+}
+
+#search-bar {
+  flex: 1;
+  border: none;
+  padding: 8px 15px;
+  font-size: 14px;
+  outline: none;
+  min-width: 0;
+}
+
+#search-btn {
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  flex-shrink: 0;
+  width: 40px;
+}
+
+#search-btn:hover {
+  background-color: var(--hover-primary);
+}
+
+#search-btn .cart-button {
+  margin-right: 0;
+  padding: 8px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
   width: 100%;
+}
+
+#search-btn img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+  display: block;
+  margin: 0 auto;
 }
 
 .nav-actions {
@@ -110,6 +170,10 @@ https://colorhunt.co/palette/211c844d55cc7a73d1b5a8d5
   align-items: center;
   position: absolute;
   right: 20px;
+}
+
+.nav-btn {
+  cursor: pointer;
 }
 
 .market-button {
@@ -123,6 +187,7 @@ https://colorhunt.co/palette/211c844d55cc7a73d1b5a8d5
   color: var(--text-dark);
   cursor: pointer;
   transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
 .market-button:hover {
@@ -172,30 +237,252 @@ https://colorhunt.co/palette/211c844d55cc7a73d1b5a8d5
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
 }
 
-
-.navbar img {
-  height: 5vh;
-  min-height: 50px;
-  width: 25vh;
-  max-width: 125px;
-  object-fit: contain;
+@media (max-width: 1200px) {
+  .search-box {
+    max-width: 50%;
+  }
 }
 
-input[type="text"], select {
-  width: 40vw;
-  padding: 10px 20px;
-  border: 2px solid #7a73d1;
-  border-radius: 0;
-  border-top-right-radius: 10px;  
-  border-bottom-right-radius: 10px;  
-  display: inline-block;
-}
-input[type=text]:focus {
-  border: 2px solid #7a73d1;
-  outline: none;
+@media (max-width: 992px) {
+  .app-header {
+    padding: 12px 60px;
+  }
+
+  .search-box {
+    flex: 0 1 550px;
+    max-width: 60%;
+  }
+
+  .nav-actions {
+    right: 15px;
+  }
+
+  .market-button {
+    margin-right: 15px;
+  }
+
+  .cart-button {
+    margin-right: 15px;
+  }
 }
 
-#csbs {
-  display: flex;
-  align-items: center;
+@media (max-width: 850px) {
+  .app-header {
+    padding: 12px 15px;
+  }
+
+  .search-box {
+    max-width: 50%;
+  }
+
+  .brand-logo {
+    left: 15px;
+  }
+
+  .nav-actions {
+    right: 15px;
+  }
+
+  .market-button {
+    margin-right: 10px;
+    padding: 8px 12px;
+  }
+
+  .cart-button {
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    flex-direction: column;
+    padding: 12px 15px;
+    gap: 10px;
+  }
+
+  .app-header::before {
+    content: "";
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand-logo {
+    position: static;
+    margin: 0;
+  }
+
+  .nav-actions {
+    position: static;
+    margin: 0;
+    padding: 0;
+    width: auto;
+  }
+
+  .app-header > .brand-logo,
+  .app-header > .nav-actions {
+    align-self: auto;
+    margin-bottom: 0;
+  }
+
+  .app-header {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto 1fr;
+  }
+
+  .brand-logo {
+    grid-row: 1;
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  .nav-actions {
+    grid-row: 1;
+    grid-column: 2;
+    justify-self: end;
+  }
+
+  .search-box {
+    grid-row: 2;
+    grid-column: 1 / span 2;
+    flex: 1 1 100%;
+    max-width: 100%;
+    margin: 10px 0 0 0;
+  }
+
+  .market-button,
+  .cart-button {
+    margin-right: 15px;
+  }
+
+  .account-button {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .search-filter {
+    padding: 8px 10px;
+    font-size: 13px;
+    min-width: 80px;
+    height: 36px;
+  }
+
+  #search-bar {
+    padding: 8px 10px;
+    font-size: 13px;
+    height: 36px;
+  }
+
+  .market-button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .cart-button img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .account-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  #search-btn {
+    height: 36px;
+  }
+
+  #search-btn .cart-button {
+    padding: 6px;
+    height: 36px;
+  }
+
+  #search-btn img {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    padding: 10px;
+  }
+
+  .nav-actions {
+    justify-content: center;
+  }
+
+  .search-box {
+    flex-direction: row;
+    border-radius: var(--border-radius-sm);
+  }
+
+  .search-filter,
+  #search-bar,
+  #search-btn {
+    border-radius: var(--border-radius-sm);
+  }
+
+  .search-filter {
+    border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
+  }
+
+  #search-btn {
+    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .app-header {
+    padding: 10px;
+  }
+
+  .nav-actions {
+    gap: 10px;
+  }
+
+  .market-button {
+    margin-right: 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .cart-button {
+    margin-right: 8px;
+  }
+
+  .cart-button img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .account-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .search-filter {
+    padding: 6px 8px;
+    font-size: 12px;
+    min-width: 70px;
+    height: 34px;
+  }
+
+  #search-bar {
+    padding: 6px 8px;
+    font-size: 12px;
+    height: 34px;
+  }
+
+  #search-btn {
+    height: 34px;
+  }
+
+  #search-btn .cart-button {
+    height: 34px;
+    padding: 5px;
+  }
 }

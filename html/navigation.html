@@ -1,28 +1,47 @@
-<head>
-  <link rel="stylesheet" href="../css/navigation.css" />
-</head>
-  <header class="app-header">
-    <div class="nav-btn brand-logo"  data-page="homepage.html"></div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/navigation.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="nav-btn brand-logo" data-page="homepage.html"></div>
 
-    <div class="search-box">
-      <button class="nav-btn search-filter" type="button" data-page="categories.html">
-        Search By <span class="caret">▼</span>
-      </button>
-      <input type="text" id="search-bar" placeholder="Search for an item or product...">        
-      <button class="nav-btn" data-page="results.html" id="search-btn">        
-        <a href="#" class="nav-btn cart-button" data-page="results.html">
-          <img src="../image/search-icon.png" alt="se" />
+      <div class="search-box">
+        <button
+          class="nav-btn search-filter"
+          type="button"
+          data-page="categories.html"
+        >
+          Search By <span class="caret">▼</span>
+        </button>
+        <input
+          type="text"
+          id="search-bar"
+          placeholder="Search for an item or product..."
+        />
+        <button
+          class="nav-btn cart-button"
+          id="search-btn"
+          data-page="results.html"
+        >
+          <img src="../image/search-icon.png" alt="Search" />
+        </button>
+      </div>
+
+      <div class="nav-actions">
+        <button class="nav-btn market-button" data-page="market.html">
+          Market
+        </button>
+        <a href="#" class="nav-btn cart-button" data-page="shoppingcart.html">
+          <img src="../image/cart-icon.png" alt="Cart" />
         </a>
-      </button>
-    </div>
-    <div class="nav-actions">
-      <button class="nav-btn market-button" data-page="market.html">Market</button>
-      <a href="#" class="nav-btn cart-button" data-page="shoppingcart.html">
-        <img src="../image/cart-icon.png" alt="Cart" />
-      </a>
-      <a href="#" class="account-button">
-        <div class="account-icon"></div>
-      </a>
-    </div>
-  </header>
-</body>
+        <a href="#" class="account-button">
+          <div class="account-icon"></div>
+        </a>
+      </div>
+    </header>
+  </body>
+</html>
