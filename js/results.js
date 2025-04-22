@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 import Model from './updatedlist.js';
 import CartModel from './shoppingcart.js';
-=======
-import Model from "./updatedlist.js";
-import CartModel from "./shopingcart.js";
->>>>>>> 976b1a5e43fd97b0cf574c2bc4f74e724030e753
 let cartModel = new CartModel();
 
 let currentIndex = 0;
