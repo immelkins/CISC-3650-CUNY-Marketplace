@@ -32,12 +32,15 @@ const getRandomItems = (list, count = 10) => {
 const createListingCard = (item) => {
   return `
    <div class="listing-card" data-id="${item.id}" tabindex="0">
-     <img
-       src="${item.image_url[0]}"
-       alt="${item.title}"
-       class="listing-img"
-       onerror="this.onerror=null; this.src='../image/not_found.gif';"
-     />
+    <div class="thumbnail"> 
+      <img
+        src="${item.image_url[0]}"
+        alt="${item.title}"
+        class="listing-img"
+        onerror="this.onerror=null; this.src='../image/not_found.gif';"
+      />
+     </div>
+
      <div class="listing-info">
        <h4 class="listing-title">${item.title}</h4>
        <p class="listing-author">${
