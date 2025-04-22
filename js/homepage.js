@@ -1,4 +1,4 @@
-import Model from "./updatedList.js";
+import Model from "./updatedlist.js";
 import { loadNavigation } from "./navigation.js";
 
 const model = new Model();
