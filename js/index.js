@@ -3,7 +3,7 @@ import { initHomepage } from './homepage.js';
 
 // Load homepage content
 const loadHomepage = () => {
-  fetch('../html/homepage.html')
+  fetch('../html/index.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('content-container').innerHTML = html;
