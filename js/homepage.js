@@ -32,7 +32,7 @@ const getRandomItems = (list, count = 10) => {
 
 const createBookCard = (item) => {
   return `
-   <div class="book-card" data-id="${item.id}" tabindex="0">
+   <div class="book-card" data-id="${item.itemID}" tabindex="0">
      <img
        src="${item.image_url[0]}"
        alt="${item.title}"
@@ -59,6 +59,74 @@ const splitIntoRows = (items, perRow) => {
     rows.push(items.slice(i, i + perRow));
   }
   return rows;
+};
+
+const showItemDetails = (id) => {
+  const item = model.getAll().find((item) => item.itemID == id);
+
+  document.querySelector(".card-navigation").style.display = "none";
+
+  const contentContainer = document.querySelector(".content-container");
+  contentContainer.innerHTML = "";
+
+  const imageSrc = item.image_url?.[0] || "../image/placeholder.png";
+  contentContainer.innerHTML = `
+    <div class="details-card">
+      <div class="details-image">
+        <img src="${imageSrc}" alt="Cover for ${item.title}" />
+      </div>
+      <div class="details-info">
+        <div class="title-rating">
+          <h2>${item.title}</h2>
+          <div class="price">Price: $${Number(item.resell_price).toFixed(
+            2
+          )}</div>
+          <div class="contributor">By: ${item.contributor.join(", ")}</div>
+          <div class="stars">${"★".repeat(
+            Math.round(item.rating || 0)
+          )} ${item.rating.toFixed(1)}</div>
+          <div class="tags">Tags: ${item.tags}</div>
+        </div>
+        <div class="details-description">
+          <p>${item.description?.[0] || "No description available."}</p>
+        </div>
+        <div class="details-meta">
+          <div class="seller">Seller: ${item.seller}</div>
+          <div class="year">Year: ${item.date}</div>
+        </div>
+        <div class="details-actions">
+          <button class="back-btn">← Back</button>
+          <button class="cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  contentContainer
+    .querySelector(".back-btn")
+    .addEventListener("click", backToHomepage);
+  contentContainer.querySelector(".cart-btn").addEventListener("click", () => {
+    addItemToCart(item);
+  });
+};
+
+const addItemToCart = (item) => {
+  import("./shopingcart.js")
+    .then((module) => {
+      const CartModel = module.default;
+      const cartModel = new CartModel();
+      cartModel.addToCart(item);
+      alert(`${item.title} has been added to your cart!`);
+    })
+    .catch((error) => {
+      console.error("Error importing CartModel:", error);
+      alert(`${item.title} has been added to your cart!`);
+    });
+};
+
+const backToHomepage = () => {
+  document.querySelector(".card-navigation").style.display = "block";
+  loadHomepageBooks();
 };
 
 const loadHomepageBooks = () => {
@@ -128,15 +196,14 @@ const loadHomepageBooks = () => {
   document.querySelectorAll(".book-card").forEach((card) => {
     card.addEventListener("click", () => {
       const bookId = card.dataset.id;
+      showItemDetails(bookId);
       console.log(`Book clicked: ${bookId}`);
-      // navigate to book details page
     });
   });
 };
 
 const initHomepage = async () => {
   await loadNavigation();
-
   loadHomepageBooks();
 };
 
