@@ -16,6 +16,7 @@
   position: fixed;
   top: 15vh;
   width: 20vw;
+  height: 75vh;
   min-width: 250px;
   padding: 1.5rem;
   color: rgb(130, 30, 170);
@@ -114,7 +115,7 @@
 
 #results {
   position: relative;
-  top: 10vh;
+  top: 5vh;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -135,6 +136,7 @@
 .result-card {
   display: flex;
   border: 1px solid #dddd;
+  background-color: #f0f0f0;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
