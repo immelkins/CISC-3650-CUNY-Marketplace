@@ -13,7 +13,8 @@
         </div>
 
         <div id = 'listings-container'>
-            <h2 id="listing-text"><button id="back-btn">←</button></h2>
+            <h2 id="listing-text"><button id="back-btn" onclick="location.href='market.html'">←</button></h2>
+
             
             
             <!-- Add New Listing Form -->
@@ -69,8 +70,8 @@
                         
                         <!-- Delete and Submit buttons -->
                         <div class="form-buttons">
-                            <button type="button" id="cancel-btn" class="btn btn-danger" onclick="cancelListingForm()">Cancel</button>
-                            <button type="submit" class="btn btn-success" onclick="addListing()">Submit</button>
+                            <button type="button" id="cancel-btn" class="btn btn-danger" onclick="location.href='market.html'">Cancel</button>
+                            <button type="submit" class="btn btn-success" onclick="location.href='market.html'">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -84,29 +85,6 @@
       
     </div>
 
-    <script>
-        const input = document.getElementById('imageInput');
-        const preview = document.getElementById('previewImage');
-      
-        input.addEventListener('change', function () {
-          const file = this.files[0];
-      
-          if (file && file.type.startsWith('image/')) {
-            const reader = new FileReader();
-      
-            reader.onload = function (e) {
-              preview.src = e.target.result;
-              preview.style.display = 'block';
-            };
-      
-            reader.readAsDataURL(file);
-          } else {
-            preview.src = '';
-            preview.style.display = 'none';
-          }
-        });
-      </script>
-      
-      
+    <script type="module" src="../js/listingpreview.js"></script>
   </body>
 </html>
