@@ -8,8 +8,53 @@
   <body>
     <div class = 'market-sect'>
       <div class = 'top'>
-        <div id = 'filter-container'>
-            <h2 id="filter-text">Filter</h2>
+        <div id="filters">
+            <h2>Filters</h2>
+  
+            <div class="filter-section">
+              
+              <h4>Filter by Tags</h4>
+              <div class="tag-filters">
+                <label><input type="checkbox" name="tag" value="general" /> General</label>
+                <label><input type="checkbox" name="tag" value="math" /> Math</label>
+                <label><input type="checkbox" name="tag" value="science" /> Science</label>
+                <label><input type="checkbox" name="tag" value="computer_science" /> Computer Science</label>
+                <label><input type="checkbox" name="tag" value="business" /> Business</label>
+                <label><input type="checkbox" name="tag" value="social_science" /> Social Science</label>
+                <label><input type="checkbox" name="tag" value="humanities" /> Humanities</label>
+                <label><input type="checkbox" name="tag" value="health" /> Health</label>
+                <label><input type="checkbox" name="tag" value="law" /> Law</label>
+                <label><input type="checkbox" name="tag" value="philosophy" /> Philosophy</label>
+                <label><input type="checkbox" name="tag" value="art" /> Art</label>
+                <label><input type="checkbox" name="tag" value="music" /> Music</label>
+              </div>
+            </div>
+  
+            <div class="filter-section">
+              <h4>Filter by Rating</h4>
+              <select id="rating-filter">
+                <option value="0">Any Rating</option>
+                <option value="1">1+ stars</option>
+                <option value="2">2+ stars</option>
+                <option value="3">3+ stars</option>
+                <option value="4">4+ stars</option>
+                <option value="5">5 stars only</option>
+              </select>
+            </div>
+  
+            <div class="filter-section">
+              <h4>Filter by Price</h4>
+              <div class="price-filter">
+                <label>Min: <input type="number" id="min-price" value="0" min="0" /></label>
+                <label>Max: <input type="number" id="max-price" value="100" min="0" /></label>
+              </div>
+            
+  
+              <div class="filter-buttons">
+                <button id="apply-filters">Apply Filters</button>
+                <button id="clear-filters">Clear Filters</button>
+              </div>
+            </div>
         </div>
 
         <div id = 'listings-container'>
@@ -66,9 +111,8 @@
                         <label class="form-check-label" for="negotiableCheck">Negotiable</label>
 
                         <!-- Quantity Available -->
-                        <br><label>Quantity Available</label>
+                        <br><label id="quantity-text">Quantity Available</label>
                         <input class="form-control" type="number" min="1" value="1">
-
                     </div>
                 </div>
 
