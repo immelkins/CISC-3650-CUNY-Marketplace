@@ -1,5 +1,4 @@
 import Model from "./updatedlist.js";
-import { loadNavigation } from "./navigation.js";
 
 const model = new Model();
 
@@ -202,9 +201,8 @@ const loadHomepageBooks = () => {
   });
 };
 
-const initHomepage = async () => {
-  await loadNavigation();
+
+// At the bottom of homepage.js
+export const initHomepage = () => {
   loadHomepageBooks();
 };
-
-document.addEventListener("DOMContentLoaded", initHomepage);
