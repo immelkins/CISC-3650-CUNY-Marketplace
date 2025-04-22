@@ -65,7 +65,10 @@ const showItemDetails = (id) => {
 
   document.querySelector(".card-navigation").style.display = "none";
 
-  const contentContainer = document.querySelector(".content-container");
+  const contentContainer =
+    document.querySelector(".content-container") ||
+    document.querySelector(".cat-results");
+
   contentContainer.innerHTML = "";
 
   const imageSrc = item.image_url?.[0] || "../image/placeholder.png";
@@ -124,9 +127,24 @@ const addItemToCart = (item) => {
 };
 
 const backToHomepage = () => {
-  document.querySelector(".card-navigation").style.display = "block";
-  loadHomepageBooks();
+  const nav = document.querySelector(".card-navigation");
+  if (nav) nav.style.display = "block";
+
+  const container =
+    document.querySelector(".content-container") ||
+    document.querySelector(".cat-results");
+
+  if (!container) return console.error("No container found to restore content");
+
+  container.innerHTML = "";
+
+  const isHomepage = document.querySelector(".content-container") !== null;
+
+  if (isHomepage) {
+    loadHomepageBooks();
+  }
 };
+
 
 const loadHomepageBooks = () => {
   const contentContainer = document.querySelector(".content-container");
@@ -197,6 +215,82 @@ const loadHomepageBooks = () => {
       const bookId = card.dataset.id;
       showItemDetails(bookId);
       console.log(`Book clicked: ${bookId}`);
+    });
+  });
+};
+
+document.addEventListener('click', (event) => {
+  const card = event.target.closest('.feature-card');
+  if (card) {
+    const filter = card.dataset.filter;
+    console.log('data-filter:', filter);
+    categoryFilters(filter)
+  }
+});
+
+function categoryFilters(filter) {
+  const allItems = model.getAll();
+
+  const filteredItems = allItems.filter(item => {
+    if (!item.tags) return false;
+    return item.tags.toLowerCase().includes(filter.toLowerCase());
+  });
+  document.querySelector('.card-navigation')?.style.setProperty('display', 'none');
+
+  renderFilteredBooks(filteredItems, filter);
+}
+
+const renderFilteredBooks = (items, tag) => {
+  const isCategoryPage = document.querySelector('.cat-results') !== null;
+
+  const container = isCategoryPage
+    ? document.querySelector('.cat-results')
+    : document.querySelector('.content-container');
+
+  if (!container) return;
+
+  container.innerHTML = '';
+
+  const section = document.createElement('div');
+  section.classList.add('books-section');
+
+  const title = document.createElement('h3');
+  title.classList.add('section-title');
+  title.textContent = `Books tagged:`;
+  section.appendChild(title);
+
+  if (items.length === 0) {
+    section.innerHTML += `<p>No books found for "${tag}".</p>`;
+    container.appendChild(section);
+    return;
+  }
+
+  const bookRows = splitIntoRows(items, BOOKS_PER_ROW);
+
+  bookRows.forEach((row, rowIndex) => {
+    const booksRow = document.createElement('div');
+    booksRow.classList.add('books-row');
+
+    row.forEach((book, bookIndex) => {
+      const bookCard = createBookCard(book);
+      const bookWrapper = document.createElement('div');
+      bookWrapper.innerHTML = bookCard;
+      const actualCard = bookWrapper.firstElementChild;
+
+      actualCard.style.animationDelay = `${rowIndex * 0.2 + bookIndex * 0.1}s`;
+
+      booksRow.appendChild(actualCard);
+    });
+
+    section.appendChild(booksRow);
+  });
+
+  container.appendChild(section);
+
+  document.querySelectorAll(".book-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      const bookId = card.dataset.id;
+      showItemDetails(bookId);
     });
   });
 };
