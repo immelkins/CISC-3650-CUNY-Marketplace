@@ -11,11 +11,6 @@ export async function loadNavigation() {
 
       const page = btn.getAttribute("data-page");
 
-      if (page === "shoppingcart.html") {
-        window.location.href = "../html/shoppingcart.html";
-        return;
-      }
-
       const isSearch = btn.id === "search-btn";
       const searchInput = isSearch
         ? document.getElementById("search-bar").value.toLowerCase().trim()

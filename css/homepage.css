@@ -166,6 +166,7 @@ img {
 }
 
 .book-card {
+  cursor: pointer;
   flex: 1 1 300px;
   min-width: 250px;
   max-width: 100%;
