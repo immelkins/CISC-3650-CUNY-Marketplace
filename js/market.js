@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadListings(list) {
         const listingsContainer = document.getElementById("listings-container");
-        listingsContainer.innerHTML = "";
+        listingsContainer.innerHTML = "      <h2 class='other'>Your Listings</h2>";
 
         const listingRows = splitIntoRows(list, LISTINGS_PER_ROW);
 

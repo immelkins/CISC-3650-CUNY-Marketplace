@@ -29,91 +29,6 @@
     margin: 0;
   }
   
-  
-  .app-header {
-    background-color: var(--primary-color);
-    display: flex;
-    align-items: center;
-    padding: 12px 20px;
-    box-shadow: var(--shadow-medium);
-    position: relative;
-    width: 100%;
-    margin: 0;
-  }
-  
-  .brand-logo {
-    width: 30px;
-    height: 30px;
-    background-color: var(--card-bg);
-    border-radius: var(--border-radius-sm);
-    position: absolute;
-    left: 20px;
-    transition: transform var(--transition-fast);
-  }
-  
-  .search-box {
-    display: flex;
-    flex: 0 1 700px;
-    border-radius: var(--border-radius-sm);
-    overflow: hidden;
-    box-shadow: var(--shadow-light);
-    margin: 0 auto;
-    transition: box-shadow var(--transition-fast);
-  }
-  
-  .search-filter {
-    background-color: var(--text-light);
-    border: none;
-    padding: 8px 15px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-dark);
-    border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: background-color var(--transition-fast);
-  }
-  
-  .search-field {
-    flex: 1;
-    border: none;
-    padding: 8px 15px;
-    font-size: 14px;
-    outline: none;
-  }
-  
-  .nav-actions {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    right: 20px;
-  }
-  
-  .market-button {
-    background-color: var(--text-light);
-    border: none;
-    border-radius: var(--border-radius-sm);
-    padding: 8px 16px;
-    margin-right: 20px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-dark);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-  }
-  
-  .cart-button {
-    position: relative;
-    margin-right: 20px;
-  }
-  
-  .cart-button img {
-    width: 24px;
-    height: 24px;
-    filter: brightness(0) invert(1);
-  }
-  
   .cart-count {
     position: absolute;
     top: -8px;
@@ -129,14 +44,6 @@
     font-size: 12px;
     font-weight: bold;
   }
-  
-  .account-icon {
-    width: 30px;
-    height: 30px;
-    background-color: var(--card-bg);
-    border-radius: 50%;
-  }
-  
   
   .cart-main {
     display: flex;
@@ -193,7 +100,6 @@
   .deselect-all:hover {
     text-decoration: underline;
   }
-  
   
   .empty-cart-message {
     text-align: center;
