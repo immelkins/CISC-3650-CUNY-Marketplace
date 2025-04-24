@@ -36,7 +36,7 @@ const createBookCard = (item) => {
        src="${item.image_url[0]}"
        alt="${item.title}"
        class="book-img"
-       onerror="this.onerror=null; this.src='../image/not_found.gif';"
+       onerror="this.onerror=null; this.src='./images/placeholder.png';"
      />
      <div class="book-info">
        <h4 class="book-title">${item.title}</h4>
@@ -71,7 +71,7 @@ const showItemDetails = (id) => {
 
   contentContainer.innerHTML = "";
 
-  const imageSrc = item.image_url?.[0] || "../image/placeholder.png";
+  const imageSrc = item.image_url?.[0] || "./image/placeholder.png";
   contentContainer.innerHTML = `
     <div class="details-card">
       <div class="details-image">
@@ -144,7 +144,6 @@ const backToHomepage = () => {
     loadHomepageBooks();
   }
 };
-
 
 const loadHomepageBooks = () => {
   const contentContainer = document.querySelector(".content-container");
@@ -219,43 +218,45 @@ const loadHomepageBooks = () => {
   });
 };
 
-document.addEventListener('click', (event) => {
-  const card = event.target.closest('.feature-card');
+document.addEventListener("click", (event) => {
+  const card = event.target.closest(".feature-card");
   if (card) {
     const filter = card.dataset.filter;
-    console.log('data-filter:', filter);
-    categoryFilters(filter)
+    console.log("data-filter:", filter);
+    categoryFilters(filter);
   }
 });
 
 function categoryFilters(filter) {
   const allItems = model.getAll();
 
-  const filteredItems = allItems.filter(item => {
+  const filteredItems = allItems.filter((item) => {
     if (!item.tags) return false;
     return item.tags.toLowerCase().includes(filter.toLowerCase());
   });
-  document.querySelector('.card-navigation')?.style.setProperty('display', 'none');
+  document
+    .querySelector(".card-navigation")
+    ?.style.setProperty("display", "none");
 
   renderFilteredBooks(filteredItems, filter);
 }
 
 const renderFilteredBooks = (items, tag) => {
-  const isCategoryPage = document.querySelector('.cat-results') !== null;
+  const isCategoryPage = document.querySelector(".cat-results") !== null;
 
   const container = isCategoryPage
-    ? document.querySelector('.cat-results')
-    : document.querySelector('.content-container');
+    ? document.querySelector(".cat-results")
+    : document.querySelector(".content-container");
 
   if (!container) return;
 
-  container.innerHTML = '';
+  container.innerHTML = "";
 
-  const section = document.createElement('div');
-  section.classList.add('books-section');
+  const section = document.createElement("div");
+  section.classList.add("books-section");
 
-  const title = document.createElement('h3');
-  title.classList.add('section-title');
+  const title = document.createElement("h3");
+  title.classList.add("section-title");
   title.textContent = `Books tagged:`;
   section.appendChild(title);
 
@@ -268,12 +269,12 @@ const renderFilteredBooks = (items, tag) => {
   const bookRows = splitIntoRows(items, BOOKS_PER_ROW);
 
   bookRows.forEach((row, rowIndex) => {
-    const booksRow = document.createElement('div');
-    booksRow.classList.add('books-row');
+    const booksRow = document.createElement("div");
+    booksRow.classList.add("books-row");
 
     row.forEach((book, bookIndex) => {
       const bookCard = createBookCard(book);
-      const bookWrapper = document.createElement('div');
+      const bookWrapper = document.createElement("div");
       bookWrapper.innerHTML = bookCard;
       const actualCard = bookWrapper.firstElementChild;
 
@@ -295,8 +296,10 @@ const renderFilteredBooks = (items, tag) => {
   });
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+  initHomepage();
+});
 
-// At the bottom of homepage.js
 export const initHomepage = () => {
   loadHomepageBooks();
 };

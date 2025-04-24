@@ -1,42 +1,18 @@
-h2 {
+.other {
     background-color: rgb(170, 170, 170);
     color: rgb(0, 0, 0);
     padding: 15px 20px;
     text-align: center;
-    border-radius: 19px 19px 0 0; /* curved top only */
+    border-radius: 19px 19px 0 0; 
+    /* curved top only */
     margin: 0;
     width: 100%;
     box-sizing: border-box;
-    border-bottom: 1px solid rgb(0, 0, 0);  /* separator line */
-    
+    border-bottom: 1px solid rgb(0, 0, 0);  
+    /* separator line */
     position: relative;
     top: 0;
   }
-
-.listings-heading {
-    display: flex;
-    align-items: center;
-    background-color: rgb(170, 170, 170);
-    border-radius: 19px 19px 0 0;
-    border-bottom: 1px solid rgb(0, 0, 0);
-    padding: 15px 20px;
-    box-sizing: border-box;
-    width: 100%;
-    gap: 10px;
-  }
-  
-  #back-btn {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .listings-heading h1 {
-    margin: 0;
-    font-size: 24px;
-  }
-  
 
 .top{
     /* background-color: rgb(26, 64, 129);*/
@@ -49,107 +25,22 @@ h2 {
     margin-right: 3%;
 }
 
-/* Filter */
-#filters{
-    background-color: white;
-    border: 1px solid;
-    border-radius: 20px;
-    padding: 0px;
-  }
-  
-  #listings-container,
-  #messages-container,
-  #new-listing-btn {
-    margin-bottom: 30px;
-  }
-  
-  #new-listing-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  
-  #new-listing-btn h2 {
-    font-size: 1.2rem;
-    margin: 0;
-  }
-  
-  #filters h4 {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-    color: rgb(130, 30, 170);
-  }
-  
-  .filter-section{
-    margin-bottom: 1rem;
-    padding: 20px;
-  }
-  
-  #filters input[type="checkbox"] {
-    margin-right: 0.5rem;
-    cursor: pointer;
-  }
-  
-  #filters select, 
-  #filters input[type="number"] {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-xs);
-    margin-bottom: 1rem;
-  }
-  
-  #filters button {
-    width: 100%;
-    padding: 0.75rem;
-    border: none;
-    border-radius: var(--border-radius-xs);
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color var(--transition-fast);
-  }
-  
-  #apply-filters {
-    background-color: rgb(130, 30, 170);
-    color: white;
-  }
-  
-  #apply-filters:hover {
-    background-color: rgb(130, 30, 170, 0.75);
-  }
-  
-  #clear-filters {
-    background-color: #f0f0f0;
-    color: #333;
-    margin-top: 0.5rem;
-  }
-  
-  #clear-filters:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .tag-filters {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-  }
-  
-  .price-filter {
-    display: flex;
-    gap: 0.5rem;
-  }
-  
-  #filters-space {
-    position: relative;
+#filter-container{
     width: 20vw;
-    min-width: 250px;
-    height: 1px;
+}
+/* Listing */
+.listings-heading {
+    display: flex;
+    align-items: center;
+    background-color: rgb(170, 170, 170);
+    border-radius: 19px 19px 0 0;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    padding: 15px 20px;
+    box-sizing: border-box;
+    width: 100%;
+    gap: 10px;
   }
 
-/* Listing */
 #listings-container{
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
@@ -158,6 +49,12 @@ h2 {
     margin: 0 auto;
     padding-top: 0px;
 }
+
+ .listings-heading h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
 
 #listing-text{
     text-align: left;
@@ -190,6 +87,8 @@ h2 {
 #previewImage{
     display: none; 
     max-height: 300px;
+    margin-right: 70%;
+    
 }
 
 .import-img-btn{
@@ -209,7 +108,6 @@ h2 {
 
     padding: 20px;
 }
-  
 
 .form-buttons{
     display: flex;
@@ -266,7 +164,7 @@ h2 {
 #messages-text {
     margin-top: 0;
 }
-
+  
   :root {
     --primary-color: #8c52ff;
     --hover-primary: #7a42eb;

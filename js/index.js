@@ -1,25 +1,18 @@
-import { loadNavigation } from './navigation.js';
-import { initHomepage } from './homepage.js';
+import { searchListener } from "./results.js";
 
-// Load homepage content
-const loadHomepage = () => {
-  fetch('../html/index.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('content-container').innerHTML = html;
-      initHomepage();
-    });
-};
+searchListener("html/");
 
-// Load navigation and set up logo click once it’s in the DOM
-loadNavigation().then(() => {
-  const logo = document.querySelector('.brand-logo');
-  if (logo) {
-    logo.addEventListener('click', (e) => {
-      e.preventDefault();
-      loadHomepage();
-    });
+async function loadHomepage() {
+  try {
+    const response = await fetch("./html/homepage.html");
+    const html = await response.text();
+    document.getElementById("content").innerHTML = html;
+
+    const homepageModule = await import("./homepage.js");
+    homepageModule.initHomepage();
+  } catch (error) {
+    console.error("Error loading homepage:", error);
   }
-});
+}
 
-loadHomepage();
+document.addEventListener("DOMContentLoaded", loadHomepage);
