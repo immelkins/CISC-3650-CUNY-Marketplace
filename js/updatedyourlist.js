@@ -180,4 +180,13 @@ export default class YourListModel {
             localStorage.setItem('listings', JSON.stringify(this.data.results));
         }
     }
+
+    delete(itemID) {
+        this.data.results = this.data.results.filter(item => item.itemID !== itemID);
+        // Remove from localStorage
+        let saved = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
+        saved = saved.filter(item => item.itemID !== itemID);
+        localStorage.setItem(this.localStorageKey, JSON.stringify(saved));
+    }
+
 }

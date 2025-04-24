@@ -6918,4 +6918,8 @@ export default class Model {
   getAll() {
     return this.data.results;
   }
+
+  getById(itemID) {
+    return this.data.results.find(item => item.itemID === parseInt(itemID));
+}
 }

@@ -1,4 +1,5 @@
 import Model from './updatedlist.js';
+import ShoppingModel from './updatedshoppingcart.js';
 
 //Create listener for search queries
 function searchListener(html = '') {
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!resultsContainer) return;
 
     const model = new Model();
+    const shoppingCart = new ShoppingModel();
     const loadMoreBtn = document.getElementById('load-more-btn');
     let currentIndex = 0;
     let allResults = model.data.results;
@@ -152,6 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         resultsContainer.querySelector('.cart-btn').addEventListener('click', () => {
+            shoppingCart.addToCart(parseInt(id));
+            console.log(shoppingCart.getCartItems());
             alert('item added to cart');
         });
     }

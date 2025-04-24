@@ -1,6 +1,8 @@
 import Model from "./updatedlist.js";
+import ShoppingModel from './updatedshoppingcart.js';
 
 const model = new Model();
+const shoppingCart = new ShoppingModel();
 
 const BOOKS_PER_ROW = 3;
 
@@ -108,22 +110,11 @@ const showItemDetails = (id) => {
     .querySelector(".back-btn")
     .addEventListener("click", backToHomepage);
   contentContainer.querySelector(".cart-btn").addEventListener("click", () => {
-    addItemToCart(item);
-  });
-};
+    shoppingCart.addToCart(item.itemID);
+    console.log(shoppingCart.getCartItems());
+    alert(`${item.title} has been added to your cart!`);
 
-const addItemToCart = (item) => {
-  import("./shopingcart.js")
-    .then((module) => {
-      const CartModel = module.default;
-      const cartModel = new CartModel();
-      cartModel.addToCart(item);
-      alert(`${item.title} has been added to your cart!`);
-    })
-    .catch((error) => {
-      console.error("Error importing CartModel:", error);
-      alert(`${item.title} has been added to your cart!`);
-    });
+  });
 };
 
 const backToHomepage = () => {

@@ -74,7 +74,7 @@ document.getElementById('add-new-listing').addEventListener('submit', function (
         };
 
         model.addListing(newItem);
-        model.hideById(listingId);
+        model.update(listingId);
         // All required fields are filled — redirect to market.html        
         window.location.href = 'market.html';
     } else {

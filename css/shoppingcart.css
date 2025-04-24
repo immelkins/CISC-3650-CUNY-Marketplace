@@ -58,7 +58,7 @@
     min-height: 100vh;
   }
   
-  .cart-content {
+  #cart-content {
     flex: 3;
     background-color: var(--card-bg);
     padding: 20px;
@@ -354,4 +354,22 @@
     .quantity-selector {
       justify-content: flex-start;
     }
+  }
+
+  .remove-item {
+    margin-left: auto;
+    background-color: rgb(230, 75, 60);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .item-image {
+    width: 90px;
+    height: 140px;
+    object-fit: cover;
+    transition: transform var(--transition-medium);
+    flex-shrink: 0;
   }

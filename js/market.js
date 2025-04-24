@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Make the card clickable by adding a click event listener
                 actualCard.addEventListener('click', () => {
                     window.location.href = `listingdetail.html?id=${listing.itemID}`;
+                    delete(listing.itemID);
                 });
 
                 actualCard.style.animationDelay = `${rowIndex * 0.2 + listingIndex * 0.1}s`;
