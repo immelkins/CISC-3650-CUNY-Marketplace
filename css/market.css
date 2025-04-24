@@ -36,6 +36,7 @@
     width: 60%;
     margin: 0 auto;
     padding-top: 0px;
+    max-height: 85vh;
 }
 
 #new-listing-btn {
@@ -59,10 +60,11 @@
 #messages-container{
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
-    padding-bottom: 200%; 
+    padding-bottom: 110%; 
     margin-top: -80%;
     border: 1px solid;
     text-align: center;
+    max-height: 85vh;
 }
 
 .message-card {

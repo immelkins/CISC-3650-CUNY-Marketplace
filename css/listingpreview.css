@@ -117,12 +117,24 @@
     margin-top: 10px;
 }
 
+#listings-container {
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    border: 1px solid;
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 0px;
+    max-height: 85vh;
+}
+
 #messages-container{
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
-    padding-bottom: 200%; 
+    padding-bottom: 40%; 
+    margin-top: 0%;
     border: 1px solid;
     text-align: center;
+    max-height: 40vh;
 }
 
 .message-card {
