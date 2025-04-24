@@ -7,31 +7,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('clear-filters').addEventListener('click', clearFilters);
     document.getElementById('apply-filters').addEventListener('click', applyFilters);
+    
     const model = new YourListModel();
     const allItems = model.getAll();
     const LISTINGS_PER_ROW = 3;
 
     const createListingCard = (item) => {
         return `
-   <div class="listing-card" data-id="${item.id}" tabindex="0">
-     <img
-       src="${item.image_url[0]}"
-       alt="${item.title}"
-       class="listing-img"
-       onerror="this.onerror=null; this.src='../images/placeholder.png';"
-     />
-     <div class="listing-info">
-       <h4 class="listing-title">${item.title}</h4>
-       <p class="listing-author">${item.contributor ? item.contributor.join(", ") : "Unknown"
-            }</p>
-       <p class="listing-meta">Published: ${item.date || "N/A"}</p>
-       <p class="listing-meta">Rating: ${item.rating || "0"} ★</p>
-       <p class="listing-meta">Seller: <strong>${item.seller || "N/A"
-            }</strong></p>
-       <p class="listing-price">$${(item.resell_price || 0).toFixed(2)}</p>
-     </div>
-   </div>
- `;
+        <div class="listing-card" data-id="${item.id}" tabindex="0">
+          <img
+            src="${item.image_url[0]}"
+            alt="${item.title}"
+            class="listing-img"
+            onerror="this.onerror=null; this.src='../images/placeholder.png';"
+          />
+          <div class="listing-info">
+            <h4 class="listing-title">${item.title}</h4>
+            <p class="listing-author">${item.contributor ? item.contributor.join(", ") : "Unknown"}</p>
+            <p class="listing-meta">Published: ${item.date || "N/A"}</p>
+            <p class="listing-meta">Rating: ${item.rating || "0"} ★</p>
+            <p class="listing-meta">Seller: <strong>${item.seller || "N/A"}</strong></p>
+            <p class="listing-price">$${(item.resell_price || 0).toFixed(2)}</p>
+          </div>
+        </div>
+        `;
     };
 
     const splitIntoRows = (items, perRow) => {
@@ -44,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadListings(list) {
         const listingsContainer = document.getElementById("listings-container");
-        listingsContainer.innerHTML = "      <h2 class='other'>Your Listings</h2>";
+        listingsContainer.innerHTML = "<h2 class='other'>Your Listings</h2>";
 
         const listingRows = splitIntoRows(list, LISTINGS_PER_ROW);
 
@@ -57,6 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const listingWrapper = document.createElement("div");
                 listingWrapper.innerHTML = listingCard;
                 const actualCard = listingWrapper.firstElementChild;
+
+                // Make the card clickable by adding a click event listener
+                actualCard.addEventListener('click', () => {
+                    window.location.href = `listingdetail.html?id=${listing.itemID}`;
+                });
 
                 actualCard.style.animationDelay = `${rowIndex * 0.2 + listingIndex * 0.1}s`;
                 listingsRow.appendChild(actualCard);
@@ -107,5 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const initMarketpage = () => {
         loadListings(allItems);
     };
+
     initMarketpage();
 });

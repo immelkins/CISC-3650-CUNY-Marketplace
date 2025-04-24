@@ -1,9 +1,10 @@
 export default class YourListModel {
     constructor() {
+        this.localStorageKey = 'customListings';
         this.data = {
             results: [
                 {
-                    itemID: 1,
+                    itemID: 0,
                     title: "The mask of sanity",
                     contributor: ["Hervey M. Cleckley"],
                     description: ["No description available."],
@@ -13,23 +14,25 @@ export default class YourListModel {
                     resell_price: 46.02,
                     seller: "CampusBooks",
                     tags: "general",
+                    negotiable: false,
+                    quantity: 1,
                 },
                 {
-                    itemID: 2,
+                    itemID: 1,
                     title: "Physics Textbook Part - 1 for Class - 11 - 11086",
                     contributor: ["NCERT (Author)"],
-                    description: ["No description available."],
+                    description: ["A book about Physics."],
                     date: 2014,
                     rating: 2.3,
-                    image_url: [
-                        "https://covers.openlibrary.org/b/olid/OL27054365M-L.jpg",
-                    ],
+                    image_url: ["https://covers.openlibrary.org/b/olid/OL27054365M-L.jpg"],
                     resell_price: 113.23,
                     seller: "BookBarn",
                     tags: "science physics mechanics",
+                    negotiable: false,
+                    quantity: 1,
                 },
                 {
-                    itemID: 3,
+                    itemID: 2,
                     title: "The united-independent compensatory code/system/concept",
                     contributor: ["Neely Fuller"],
                     description: ["No description available."],
@@ -39,9 +42,11 @@ export default class YourListModel {
                     resell_price: 110.34,
                     seller: "BookBarn",
                     tags: "general",
+                    negotiable: false,
+                    quantity: 1,
                 },
                 {
-                    itemID: 4,
+                    itemID: 3,
                     title: "Our sexuality",
                     contributor: ["Crooks, Robert, Robert L. Crooks, Karla Baur"],
                     description: ["No description available."],
@@ -51,9 +56,11 @@ export default class YourListModel {
                     resell_price: 54.82,
                     seller: "ScholarTrade",
                     tags: "general",
+                    negotiable: false,
+                    quantity: 1,
                 },
                 {
-                    itemID: 5,
+                    itemID: 4,
                     title: "Macroeconomics",
                     contributor: [
                         "Campbell R. McConnell, Stanley L. Brue, Sean M. Flynn, Thomas Paul Barbiero, Sean Flynn",
@@ -65,9 +72,11 @@ export default class YourListModel {
                     resell_price: 144.26,
                     seller: "ScholarTrade",
                     tags: "business",
+                    negotiable: false,
+                    quantity: 1,
                 },
                 {
-                    itemID: 6,
+                    itemID: 5,
                     title: "Research in psychology",
                     contributor: ["C. James Goodwin"],
                     description: ["No description available."],
@@ -77,23 +86,25 @@ export default class YourListModel {
                     resell_price: 35.09,
                     seller: "CampusBooks",
                     tags: "social science behavior psychology",
+                    negotiable: false,
+                    quantity: 1,
                 },
                 {
-                    itemID: 7,
+                    itemID: 6,
                     title: "Life-span development",
                     contributor: ["John W. Santrock"],
                     description: ["No description available."],
                     date: 2005,
                     rating: 4.7,
-                    image_url: [
-                        "https://covers.openlibrary.org/b/olid/OL24412871M-L.jpg",
-                    ],
+                    image_url: ["https://covers.openlibrary.org/b/olid/OL24412871M-L.jpg"],
                     resell_price: 57.92,
                     seller: "BookBarn",
                     tags: "social science behavior",
+                    negotiable: false,
+                    quantity: 1,
                 },
                 {
-                    itemID: 8,
+                    itemID: 7,
                     title: "The Humanistic Tradition",
                     contributor: ["Gloria K. Fiero"],
                     description: ["No description available."],
@@ -103,9 +114,11 @@ export default class YourListModel {
                     resell_price: 52.16,
                     seller: "ScholarTrade",
                     tags: "general",
+                    negotiable: false,
+                    quantity: 1,
                 },
                 {
-                    itemID: 9,
+                    itemID: 8,
                     title: "Psychology",
                     contributor: ["Gray, Peter"],
                     description: ["No description available."],
@@ -115,11 +128,56 @@ export default class YourListModel {
                     resell_price: 35.11,
                     seller: "CampusBooks",
                     tags: "social science behavior psychology",
+                    negotiable: false,
+                    quantity: 1,
                 },
-            ],
+
+            ]
         };
+
+        // Merge with stored listings
+        this.loadLocalListings();
     }
+
+    loadLocalListings() {
+        const saved = localStorage.getItem(this.localStorageKey);
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved);
+                this.data.results = this.data.results.concat(parsed);
+            } catch (err) {
+                console.error('Error parsing localStorage data:', err);
+            }
+        }
+    }
+
     getAll() {
         return this.data.results;
+    }
+
+    getById(itemID) {
+        return this.data.results.find(item => item.itemID === parseInt(itemID));
+    }
+
+    addListing(newItem) {
+        // Get current saved items or empty array
+        let saved = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
+
+        const maxID = Math.max(...this.data.results.map(item => item.itemID), 0);
+        newItem.itemID = maxID + 1;
+
+        // Save to localStorage
+        saved.push(newItem);
+        localStorage.setItem(this.localStorageKey, JSON.stringify(saved));
+        this.data.results.push(newItem);
+    }
+
+    update(updatedItem) {
+        const index = this.data.results.findIndex(item => item.itemID === updatedItem.itemID);
+        if (index !== -1) {
+            this.data.results[index] = updatedItem;
+            // Update localStorage
+            localStorage.setItem('listings', JSON.stringify(this.data.results));
+        }
     }
 }

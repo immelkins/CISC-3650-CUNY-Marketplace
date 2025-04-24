@@ -30,9 +30,9 @@
 }
 
 #listings-container {
-    background-color: rgb(255, 255, 255);
+    background-color: none;
     border-radius: 20px;
-    border: 1px solid;
+    border: none;
     width: 60%;
     margin: 0 auto;
     padding-top: 0px;
