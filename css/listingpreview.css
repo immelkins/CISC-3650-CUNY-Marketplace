@@ -48,6 +48,7 @@
     width: 60%;
     margin: 0 auto;
     padding-top: 0px;
+    min-height: 75vh;
 }
 
  .listings-heading h1 {
@@ -102,7 +103,8 @@
     margin-bottom: 10px;
 }
 
-.descriptionInput {
+.descriptionInput,
+#descriptionInput {
     width: 100%;
     box-sizing: border-box;
 
@@ -201,4 +203,18 @@
     margin: 0;
     padding: 0;
     color: var(--text-dark);
+  }
+
+  .btn-danger{
+    position: relative;
+    right: 70%;
+    z-index: 100;
+    margin: 10px;
+  }
+
+  .btn-success{
+    position: relative;
+    left: 0%;
+    z-index: 100;
+    margin: 10px;
   }
