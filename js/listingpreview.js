@@ -41,7 +41,7 @@ document.getElementById('add-new-listing').addEventListener('submit', function (
 
         // Create a new item
         const model = new YourListModel();
-        const newID = model.getAll().length + 1;
+        const newID = Math.max(...model.getAll().map(item => item.itemID), 0) + 1;
 
         const newItem = {
             itemID: newID,

@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Loop through the items in the shopping cart
             shoppingCart.data.results.forEach(cartItem => {
-                // Fetch the full item from the Model using itemID
                 const fullItem = model.getById(cartItem.itemID);
 
                 if (fullItem) {

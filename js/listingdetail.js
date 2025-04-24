@@ -40,46 +40,51 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('descriptionInput').value = listing.description?.[0] || '';
     }
 
-document.getElementById('add-new-listing').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent default submission
+    document.getElementById('add-new-listing').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent default submission
 
-    const form = event.target;
+        const form = event.target;
 
-    if (form.checkValidity()) {
-        // Get form data
-        const title = document.getElementById('Product name').value;
-        const tags = form.querySelector('input[placeholder="Input tags here..."]').value;
-        const price = parseFloat(document.getElementById('price').value);
-        const negotiable = document.getElementById('negotiableCheck').checked;
-        const quantity = parseInt(form.querySelector('input[type="number"][min="1"]').value);
-        const description = form.querySelector('textarea').value;
-        const imageSrc = preview.src || "";
+        if (form.checkValidity()) {
+            // Get form data
+            const title = document.getElementById('Product name').value;
+            const tags = form.querySelector('input[placeholder="Input tags here..."]').value;
+            const price = parseFloat(document.getElementById('price').value);
+            const negotiable = document.getElementById('negotiableCheck').checked;
+            const quantity = parseInt(form.querySelector('input[type="number"][min="1"]').value);
+            const description = form.querySelector('textarea').value;
+            const imageSrc = preview.src || "";
 
-        // Create a new item
-        const model = new YourListModel();
-        const newID = model.getAll().length + 1;
+            // Create a new item
+            const model = new YourListModel();
+            const newID = Math.max(...model.getAll().map(item => item.itemID), 0) + 1;
 
-        const newItem = {
-            itemID: newID,
-            title: title,
-            contributor: ["You"], // Could be dynamic
-            description: [description || "No description available."],
-            rating: 0,
-            image_url: [imageSrc],
-            resell_price: price,
-            seller: "You", 
-            tags: tags,
-            negotiable: negotiable,
-            quantity: quantity
-        };
+            const newItem = {
+                itemID: newID,
+                title: title,
+                contributor: ["You"], // Could be dynamic
+                description: [description || "No description available."],
+                rating: 0,
+                image_url: [imageSrc],
+                resell_price: price,
+                seller: "You",
+                tags: tags,
+                negotiable: negotiable,
+                quantity: quantity
+            };
 
-        model.addListing(newItem);
-        model.update(listingId);
-        // All required fields are filled — redirect to market.html        
+            model.addListing(newItem);
+            model.remove(parseInt(listingId));
+            // All required fields are filled — redirect to market.html        
+            window.location.href = 'market.html';
+        } else {
+            // Show validation error messages
+            form.reportValidity();
+        }
+    });
+
+    document.getElementById('delete-btn').addEventListener('click', function (event) {
+        model.remove(parseInt(listingId));
         window.location.href = 'market.html';
-    } else {
-        // Show validation error messages
-        form.reportValidity();
-    }
-});
+    });
 });
